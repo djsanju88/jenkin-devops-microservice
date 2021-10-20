@@ -13,8 +13,8 @@ pipeline {
 	     stage ('Build') {
 		   steps {
 	         
-			 sh 'mvn --version'
-			 sh 'docker version'
+			 //sh 'mvn --version'
+			 //sh 'docker version'
 	         echo "Build"
 			 echo "PATH - $env.PATH"
 			 echo "BUILD_NUMBER - $env.BUILD_NUMBER"
@@ -23,6 +23,25 @@ pipeline {
 			 echo "BUILD_TAG - $env.BUILD_TAG"
 			 echo "UID_URL - $env.BUILD_URL"
 	 	}
+		environment {
+
+PATH = "$PATH:/usr/local/bin"
+
+}
+
+stage('Test'){
+
+sh 'docker --version'
+
+}
+
+stage('Test'){
+
+echo "$PATH"
+
+sh "docker-compose --version"
+
+}
    }
    stage ('Test') {
 		   steps {
